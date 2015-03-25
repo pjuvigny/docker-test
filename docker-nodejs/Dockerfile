@@ -6,18 +6,19 @@ ENV NODE_ENV dockerized
 RUN     rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
 # Install Node.js and npm
 RUN     yum install -y npm
-
+# Install tar
 RUN     yum install -y tar
 
 # Get the sources
 ADD     http://ic.indus.capgemini.mobi/NodeTest/NodeTest-latest.tar ./
 
 RUN     mkdir /src
-# Bundle app source
+# Extract sources
 RUN     tar xvf NodeTest-latest.tar -C /src
 # Install app dependencies
 RUN cd /src/NodeTest; npm install
 
-
+# Expose app port
 EXPOSE  8000
+# Launch nodejs
 CMD ["node", "/src/NodeTest/app.js"]
