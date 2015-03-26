@@ -15,8 +15,8 @@ ADD     http://ic.indus.capgemini.mobi/NodeTest/NodeTest-latest.tar ./
 RUN     mkdir /src
 # Extract sources
 RUN     tar xvf NodeTest-latest.tar -C /src
-# Install app dependencies
-RUN cd /src/NodeTest; npm install
+# Install app dependencies (production only)
+RUN cd /src/NodeTest; npm install --production
 
 # Expose app port
 EXPOSE  8000
